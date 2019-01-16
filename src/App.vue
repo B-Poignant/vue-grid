@@ -21,14 +21,12 @@
 
         <Grid base_url_ajax="" model="eco_product" />
 
-        {{ $t('message') }}
-        {{ $t('test') }}
-
-        <notifications group="foo" />
+        <notifications group="common" />
     </div>
 </template>
 
 <script>
+    //console.log(process.env.VUE_APP_FOO)
     import Grid from './components/Grid.vue';
 
     export default {

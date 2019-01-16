@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="onClick" :name="name" :type="type" :title="title">{{ msg }}</button>
+        <button :class="classes" @click="onClick" :name="name" :type="type" :title="title">{{ msg }}</button>
     </div>
 </template>
 

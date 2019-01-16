@@ -12,7 +12,7 @@ const state = {
         {"x": 6, "y": 2, "w": 6, "h": 3, "i": "description", "maxH": 10, "maxW": 12},
         {"x": 6, "y": 5, "w": 6, "h": 1, "i": "price", "maxH": 10, "maxW": 12},
         {"x": 6, "y": 6, "w": 6, "h": 1, "i": "availabilty", "maxH": 10, "maxW": 12},
-        {"x": 6, "y": 7, "w": 6, "h": 1, "i": "add_cart", "maxH": 10, "maxW": 12}
+        {"x": 6, "y": 7, "w": 6, "h": 1, "i": "cart", "maxH": 10, "maxW": 12}
     ]
 }
 
@@ -62,9 +62,10 @@ Object.keys(types).forEach(type => {
 }*/
 
 const wellFormated = (response) => {
+    console.log('ddd')
     if(typeof response == 'object' && 'data' in response && Array.isArray(response.data)){
-        //on vérifie le premier élément
-        if('x' in response.data[0] && 'y' in response.data[0] && 'w' in response.data[0] && 'h' in response.data[0] && 'i' in response.data[0] && 'max-v' in response.data[0] && 'max-h' in response.data[0]){
+        if(response.data.every( el => 'x' in el && 'y' in el && 'w' in el && 'h' in el && 'i' in el && 'max-v' in el && 'max-h' in el)){
+        //if('x' in response.data[0] && 'y' in response.data[0] && 'w' in response.data[0] && 'h' in response.data[0] && 'i' in response.data[0] && 'max-v' in response.data[0] && 'max-h' in response.data[0]){
             return response.data
         }
     }

@@ -1,4 +1,11 @@
 {
-  "message": "message EN",
-  "test": "test EN"
+  "pictures": "Pictures",
+  "title": "Title",
+  "description": "Description",
+  "price": "Price",
+  "availabilty": "Availabilty",
+  "cart": "Panier",
+  "save": "Enregistrer",
+  "saveGrid_notif_title":"Paramètres",
+  "saveGrid_notif_text":"Vos paramètres ont bien été enregistrés"
 }

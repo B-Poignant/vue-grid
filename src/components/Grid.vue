@@ -125,8 +125,8 @@
         </grid-layout>
 
         <div class="btn-action">
-            <Button name="Test" msg="Load" :onClick=getGrid />
-            <Button name="Test" msg="Save" :onClick=saveGrid />
+            <Button name="Test" msg="load" :onClick=getGrid />
+            <Button v-bind:classes="['btn', 'btn-secondary']" name="test" v-bind:msg="$t('save')" :onClick=saveGrid />
         </div>
     </div>
 </template>
@@ -146,53 +146,14 @@
             Button,
             GridLayout: VueGridLayout.GridLayout,
             GridItem: VueGridLayout.GridItem
-        }, /*data:
-            function () {
-                let _gridData;
-                if (this.$store.state.getInfoAsyncPending === false && this.$store.state.getInfoAsyncStatusCode === 200) {
-                    _gridData = this.$store.state.getInfoAsyncData
-                } else {
-                    _gridData = [
-                        {"x": 0, "y": 0, "w": 6, "h": 8, "i": "pictures", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 0, "w": 6, "h": 2, "i": "title", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 2, "w": 6, "h": 3, "i": "description", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 5, "w": 6, "h": 1, "i": "price", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 6, "w": 6, "h": 1, "i": "availabilty", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 7, "w": 6, "h": 1, "i": "add_cart", "maxH": 10, "maxW": 12}
-                    ]
-                }
-
-                return {
-                    gridData: _gridData
-                }
-            }
-        ,*/
+        },
         computed: {
             fullUrl: function () {
                 return this.base_url_ajax + this.model
-            },
-            /*gridData: function () {
-                let _gridData;
-                if (this.$store.state.getInfoAsyncPending === false && this.$store.state.getInfoAsyncStatusCode === 200) {
-                    //this.$store.state.getInfoAsyncData
-
-                    return [
-                        {"x": 6, "y": 0, "w": 6, "h": 2, "i": "title", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 6, "w": 6, "h": 1, "i": "availabilty", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 7, "w": 6, "h": 1, "i": "add_cart", "maxH": 10, "maxW": 12}
-                    ]
-
-                } else {
-                    return [
-                        {"x": 0, "y": 0, "w": 6, "h": 8, "i": "pictures", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 0, "w": 6, "h": 2, "i": "title", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 2, "w": 6, "h": 3, "i": "description", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 5, "w": 6, "h": 1, "i": "price", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 6, "w": 6, "h": 1, "i": "availabilty", "maxH": 10, "maxW": 12},
-                        {"x": 6, "y": 7, "w": 6, "h": 1, "i": "add_cart", "maxH": 10, "maxW": 12}
-                    ]
-                }
-            }*/
+            }
+        },
+        created: function () {
+            this.getGrid()
         },
         methods: {
             clearAjaxState(type) {
@@ -201,9 +162,9 @@
             },
             saveGrid() {
                 this.$notify({
-                    group: 'foo',
-                    title: 'Important message',
-                    text: 'Hello user! This is a notification!'
+                    group: 'common',
+                    title: this.$t('saveGrid_notif_title'),
+                    text: this.$t('saveGrid_notif_text')
                 });
 
                 if (this.$store.state.postInfoAsyncPending !== true) {
@@ -215,13 +176,6 @@
                 }
             },
             getGrid() {
-                this.$notify({
-                    group: 'foo',
-                    title: 'Important message',
-                    text: 'Hello user! This is a notification!'
-                });
-
-                //console.log(process.env.VUE_APP_FOO)
                 if (this.$store.state.getInfoAsyncPending !== true) {
                     this.clearAjaxState(types.GET_INFO_ASYNC)
 
