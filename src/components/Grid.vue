@@ -98,8 +98,8 @@
 
 <template>
     <div>
-        <grid-layout
-                :layout="gridData"
+        <grid-layout v-if="this.$store.state.getInfoAsyncData"
+                :layout="this.$store.state.getInfoAsyncData"
                 :col-num="12"
                 :row-height="30"
                 :is-draggable="true"
@@ -111,7 +111,7 @@
                 :max-rows="10"
         >
 
-            <grid-item v-for="item in gridData"
+            <grid-item v-for="item in this.$store.state.getInfoAsyncData"
                        :key="item.i"
                        :x="item.x"
                        :max-w="item.maxW"
@@ -169,19 +169,21 @@
         ,*/
         computed: {
             fullUrl: function () {
-                return this.base_url_ajax
                 return this.base_url_ajax + this.model
             },
-            gridData: function () {
+            /*gridData: function () {
                 let _gridData;
                 if (this.$store.state.getInfoAsyncPending === false && this.$store.state.getInfoAsyncStatusCode === 200) {
-                    _gridData = [
+                    //this.$store.state.getInfoAsyncData
+
+                    return [
                         {"x": 6, "y": 0, "w": 6, "h": 2, "i": "title", "maxH": 10, "maxW": 12},
                         {"x": 6, "y": 6, "w": 6, "h": 1, "i": "availabilty", "maxH": 10, "maxW": 12},
                         {"x": 6, "y": 7, "w": 6, "h": 1, "i": "add_cart", "maxH": 10, "maxW": 12}
                     ]
+
                 } else {
-                    _gridData = [
+                    return [
                         {"x": 0, "y": 0, "w": 6, "h": 8, "i": "pictures", "maxH": 10, "maxW": 12},
                         {"x": 6, "y": 0, "w": 6, "h": 2, "i": "title", "maxH": 10, "maxW": 12},
                         {"x": 6, "y": 2, "w": 6, "h": 3, "i": "description", "maxH": 10, "maxW": 12},
@@ -190,9 +192,7 @@
                         {"x": 6, "y": 7, "w": 6, "h": 1, "i": "add_cart", "maxH": 10, "maxW": 12}
                     ]
                 }
-
-                return _gridData
-            }
+            }*/
         },
         methods: {
             clearAjaxState(type) {
@@ -200,8 +200,6 @@
                 this.$store.commit(type.BASE, {type: type.FAILURE, value: null})
             },
             saveGrid() {
-                console.log(this.$store.state.postInfoAsyncPending)
-
                 if (this.$store.state.postInfoAsyncPending !== true) {
                     this.clearAjaxState(types.POST_INFO_ASYNC)
                     this.$store.dispatch('postAsync', {
@@ -211,14 +209,11 @@
                 }
             },
             getGrid() {
-                console.log(this.$store.state.getInfoAsyncPending)
-
+                //console.log(process.env.VUE_APP_FOO)
                 if (this.$store.state.getInfoAsyncPending !== true) {
                     this.clearAjaxState(types.GET_INFO_ASYNC)
 
                     this.$store.dispatch('getAsync', {url: this.fullUrl})
-
-                    console.log(this.$store)
                 }
             }
         }

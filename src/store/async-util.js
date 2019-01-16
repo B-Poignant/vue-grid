@@ -10,7 +10,7 @@ const doAsync = (store, {url, data, method, mutationTypes, callback}) => {
     })
         .then(response => {
             let data = response
-console.log(data);
+
             if (callback) {
                 data = callback(response)
             }

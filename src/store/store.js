@@ -6,6 +6,14 @@ import * as types from './mutation-types'
 Vue.use(Vuex)
 
 const state = {
+    'getInfoAsyncData' : [
+        {"x": 0, "y": 0, "w": 6, "h": 8, "i": "pictures", "maxH": 10, "maxW": 12},
+        {"x": 6, "y": 0, "w": 6, "h": 2, "i": "title", "maxH": 10, "maxW": 12},
+        {"x": 6, "y": 2, "w": 6, "h": 3, "i": "description", "maxH": 10, "maxW": 12},
+        {"x": 6, "y": 5, "w": 6, "h": 1, "i": "price", "maxH": 10, "maxW": 12},
+        {"x": 6, "y": 6, "w": 6, "h": 1, "i": "availabilty", "maxH": 10, "maxW": 12},
+        {"x": 6, "y": 7, "w": 6, "h": 1, "i": "add_cart", "maxH": 10, "maxW": 12}
+    ]
 }
 
 const mutations = {}
@@ -49,15 +57,28 @@ Object.keys(types).forEach(type => {
     }
 })
 
-const getTitleOnly = (response) => {
+/*const getTitleOnly = (response) => {
     return response.data.title
+}*/
+
+const wellFormated = (response) => {
+    if(typeof response == 'object' && 'data' in response && Array.isArray(response.data)){
+        //on vérifie le premier élément
+        if('x' in response.data[0] && 'y' in response.data[0] && 'w' in response.data[0] && 'h' in response.data[0] && 'i' in response.data[0] && 'max-v' in response.data[0] && 'max-h' in response.data[0]){
+            return response.data
+        }
+    }
+
+    return [];
+
+
 }
 
 const actions = {
     getAsync(store, payload) {
         return doAsync(
             store, {
-                url :payload.url, method: 'GET', data: {}, mutationTypes: types.GET_INFO_ASYNC/*, callback: getTitleOnly*/
+                url :payload.url, method: 'GET', data: {}, mutationTypes: types.GET_INFO_ASYNC, callback: wellFormated
             })
     },
     postAsync(store, payload) {

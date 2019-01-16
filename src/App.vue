@@ -23,10 +23,10 @@
     <div id="app">
         <img alt="Vue logo" src="./assets/logo.png">
 
-        <Grid base_url_ajax="https://jsonplaceholder.typicode.com/posts/" model="eco_product" />
+        <Grid base_url_ajax="" model="eco_product" />
 
         <div id="notifications">
-            - {{typeof this.$store.state.postInfoAsyncStatusCode }} -  - {{typeof this.$store.state.postInfoAsyncPending }} -
+            - {{typeof this.$store.state.postInfoAsyncStatusCode }} -  {{typeof this.$store.state.postInfoAsyncPending }} -
             <div v-if="typeof this.$store.state.postInfoAsyncStatusCode !='undefined' && typeof this.$store.state.postInfoAsyncPending !='undefined' ">
                 <div v-if="this.$store.state.postInfoAsyncStatusCode == 201 && this.$store.state.postInfoAsyncPending === false">
                     <NotificationBox title="SaveOk" msg="Save Ok !"/>
