@@ -17,8 +17,6 @@
 
 <template>
     <div id="app">
-        <img alt="Vue logo" src="./assets/logo.png">
-
         <Grid base_url_ajax="" model="eco_product" />
 
         <notifications group="common" />

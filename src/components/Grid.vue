@@ -125,7 +125,7 @@
         </grid-layout>
 
         <div class="btn-action">
-            <Button name="Test" msg="load" :onClick=getGrid />
+            <!--<Button name="Test" msg="load" :onClick=getGrid />-->
             <Button v-bind:classes="['btn', 'btn-secondary']" name="test" v-bind:msg="$t('save')" :onClick=saveGrid />
         </div>
     </div>
