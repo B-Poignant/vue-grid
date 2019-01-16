@@ -120,7 +120,7 @@
                        :w="item.w"
                        :h="item.h"
                        :i="item.i">
-                <span class="text">{{item.i}}</span>
+                <span class="text">{{ $t(item.i) }}</span>
             </grid-item>
         </grid-layout>
 
@@ -200,6 +200,12 @@
                 this.$store.commit(type.BASE, {type: type.FAILURE, value: null})
             },
             saveGrid() {
+                this.$notify({
+                    group: 'foo',
+                    title: 'Important message',
+                    text: 'Hello user! This is a notification!'
+                });
+
                 if (this.$store.state.postInfoAsyncPending !== true) {
                     this.clearAjaxState(types.POST_INFO_ASYNC)
                     this.$store.dispatch('postAsync', {
@@ -209,6 +215,12 @@
                 }
             },
             getGrid() {
+                this.$notify({
+                    group: 'foo',
+                    title: 'Important message',
+                    text: 'Hello user! This is a notification!'
+                });
+
                 //console.log(process.env.VUE_APP_FOO)
                 if (this.$store.state.getInfoAsyncPending !== true) {
                     this.clearAjaxState(types.GET_INFO_ASYNC)

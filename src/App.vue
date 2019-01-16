@@ -13,10 +13,6 @@
         margin-top: 60px;
     }
 
-    #notifications {
-        float: right;
-        width: 15%;
-    }
 </style>
 
 <template>
@@ -25,29 +21,19 @@
 
         <Grid base_url_ajax="" model="eco_product" />
 
-        <div id="notifications">
-            - {{typeof this.$store.state.postInfoAsyncStatusCode }} -  {{typeof this.$store.state.postInfoAsyncPending }} -
-            <div v-if="typeof this.$store.state.postInfoAsyncStatusCode !='undefined' && typeof this.$store.state.postInfoAsyncPending !='undefined' ">
-                <div v-if="this.$store.state.postInfoAsyncStatusCode == 201 && this.$store.state.postInfoAsyncPending === false">
-                    <NotificationBox title="SaveOk" msg="Save Ok !"/>
-                </div>
-                <div v-else>
-                    <NotificationBox title="SavePasOk" msg="Save Pas Ok !"/>
-                </div>
-            </div>
-        </div>
+        {{ $t('message') }}
+        {{ $t('test') }}
+
+        <notifications group="foo" />
     </div>
 </template>
 
 <script>
-
     import Grid from './components/Grid.vue';
-    import NotificationBox from './components/NotificationBox.vue';
 
     export default {
         name: 'app',
         components: {
-            NotificationBox,
             Grid
         }
     }
