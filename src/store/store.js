@@ -71,13 +71,13 @@ const actions = {
     getAsync(store, payload) {
         return doAsync(
             store, {
-                url :payload.url+'/get', method: 'GET', data: {}, mutationTypes: types.GET_INFO_ASYNC, callback: wellFormated
+                url :payload.url+'get', method: 'GET', data: {}, mutationTypes: types.GET_INFO_ASYNC, callback: wellFormated
             })
     },
     postAsync(store, payload) {
         return doAsync(
             store, {
-                url :payload.url+'/post', method: 'POST', data: payload.data, mutationTypes: types.POST_INFO_ASYNC/*, callback: getTitleOnly*/
+                url :payload.url+'post', method: 'POST', data: payload.data, mutationTypes: types.POST_INFO_ASYNC/*, callback: getTitleOnly*/
             })
     }
 }
