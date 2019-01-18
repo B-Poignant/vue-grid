@@ -125,7 +125,6 @@
         </grid-layout>
 
         <div class="btn-action">
-            <!--<Button name="Test" msg="load" :onClick=getGrid />-->
             <Button v-bind:classes="['btn', 'btn-secondary']" name="test" v-bind:msg="$t('save')" :onClick=saveGrid />
         </div>
     </div>
@@ -170,7 +169,7 @@
                     this.clearState(types.POST_INFO_ASYNC)
                     this.$store.dispatch('postAsync', {
                         url: this.fullUrl,
-                        data: this.gridData
+                        data: this.$store.state.getInfoAsyncData
                     })
                 }
             },
