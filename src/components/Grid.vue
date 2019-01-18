@@ -140,7 +140,6 @@
         name: 'Grid',
         props: {
             base_url_ajax: String,
-            model: String,
             testLayout: Array
         }, components: {
             Button,
@@ -149,14 +148,14 @@
         },
         computed: {
             fullUrl: function () {
-                return this.base_url_ajax + this.model
+                return this.base_url_ajax
             }
         },
         created: function () {
             this.getGrid()
         },
         methods: {
-            clearAjaxState(type) {
+            clearState(type) {
                 this.$store.commit(type.BASE, {type: type.SUCCESS, value: {}})
                 this.$store.commit(type.BASE, {type: type.FAILURE, value: null})
             },
@@ -168,7 +167,7 @@
                 });
 
                 if (this.$store.state.postInfoAsyncPending !== true) {
-                    this.clearAjaxState(types.POST_INFO_ASYNC)
+                    this.clearState(types.POST_INFO_ASYNC)
                     this.$store.dispatch('postAsync', {
                         url: this.fullUrl,
                         data: this.gridData
@@ -177,7 +176,7 @@
             },
             getGrid() {
                 if (this.$store.state.getInfoAsyncPending !== true) {
-                    this.clearAjaxState(types.GET_INFO_ASYNC)
+                    this.clearState(types.GET_INFO_ASYNC)
 
                     this.$store.dispatch('getAsync', {url: this.fullUrl})
                 }

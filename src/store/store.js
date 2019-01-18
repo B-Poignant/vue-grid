@@ -57,35 +57,27 @@ Object.keys(types).forEach(type => {
     }
 })
 
-/*const getTitleOnly = (response) => {
-    return response.data.title
-}*/
-
 const wellFormated = (response) => {
-    console.log('ddd')
     if(typeof response == 'object' && 'data' in response && Array.isArray(response.data)){
         if(response.data.every( el => 'x' in el && 'y' in el && 'w' in el && 'h' in el && 'i' in el && 'max-v' in el && 'max-h' in el)){
-        //if('x' in response.data[0] && 'y' in response.data[0] && 'w' in response.data[0] && 'h' in response.data[0] && 'i' in response.data[0] && 'max-v' in response.data[0] && 'max-h' in response.data[0]){
             return response.data
         }
     }
 
     return [];
-
-
 }
 
 const actions = {
     getAsync(store, payload) {
         return doAsync(
             store, {
-                url :payload.url, method: 'GET', data: {}, mutationTypes: types.GET_INFO_ASYNC, callback: wellFormated
+                url :payload.url+'/get', method: 'GET', data: {}, mutationTypes: types.GET_INFO_ASYNC, callback: wellFormated
             })
     },
     postAsync(store, payload) {
         return doAsync(
             store, {
-                url :payload.url, method: 'POST', data: payload.data, mutationTypes: types.POST_INFO_ASYNC/*, callback: getTitleOnly*/
+                url :payload.url+'/post', method: 'POST', data: payload.data, mutationTypes: types.POST_INFO_ASYNC/*, callback: getTitleOnly*/
             })
     }
 }

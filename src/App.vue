@@ -17,7 +17,7 @@
 
 <template>
     <div id="app">
-        <Grid base_url_ajax="" model="eco_product" />
+        <Grid base_url_ajax="template_preset/" />
 
         <notifications group="common" />
     </div>
